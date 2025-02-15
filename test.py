@@ -50,19 +50,6 @@ class User:
             return None
 #4.2
     @staticmethod
-    def load_user_by_username(username, cursor):
-        sql = "SELECT id, username, hashed_password FROM users WHERE username = %s"
-        user = cursor.fetchone()
-        if user:
-            id_, username, hashed_password = user
-            loaded_user = User(username)
-            loaded_user._id = id_
-            loaded_user.hashed_password = hashed_password
-            return loaded_user
-        else:
-            return None
-#4.3
-    @staticmethod
     def load_all_users(username, cursor):
         sql = "SELECT id, username, hashed_password FROM users WHERE Users"
         users = []
@@ -129,6 +116,5 @@ class Message:
             values = (self.from_id, self.to_id, self.text, self._id)
             cursor.execute(sql, values)
             return True
-
 
 
